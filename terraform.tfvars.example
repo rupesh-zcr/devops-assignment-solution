@@ -1,0 +1,61 @@
+ami_id             = "ami-0123456789abcdef0"
+subnet_id          = "subnet-0123456789abcdef0"
+security_group_ids = ["sg-0123456789abcdef0"]
+
+instances = {
+  web = {
+    instance_type    = "t3.micro"
+    root_volume_type = "gp3"
+    root_volume_size = 20
+    key_name         = "web-key"
+    environment      = "production"
+    owner            = "platform"
+  }
+  api = {
+    instance_type    = "t3.small"
+    root_volume_type = "gp2"
+    root_volume_size = 30
+    key_name         = "api-key"
+    environment      = "production"
+    owner            = "application"
+  }
+  worker = {
+    instance_type    = "t3.medium"
+    root_volume_type = "standard"
+    root_volume_size = 125
+    key_name         = "worker-key"
+    environment      = "production"
+    owner            = "data"
+  }
+  cache = {
+    instance_type    = "m6i.large"
+    root_volume_type = "io1"
+    root_volume_size = 50
+    key_name         = "cache-key"
+    environment      = "production"
+    owner            = "platform"
+    iops             = 2000
+  }
+  database = {
+    instance_type    = "r6i.large"
+    root_volume_type = "io2"
+    root_volume_size = 100
+    key_name         = "database-key"
+    environment      = "production"
+    owner            = "database"
+    iops             = 5000
+  }
+}
+
+protected_instance_name = "database"
+
+# Replace these names/ARNs with real existing resources before applying.
+account_b_bucket_name      = "company-cross-account-data"
+ci_ecr_repository_name     = "application"
+ci_ecs_cluster_name        = "production"
+ci_ecs_service_name        = "application"
+ci_artifact_bucket_name    = "company-build-artifacts"
+ci_task_role_arns = [
+  "arn:aws:iam::000000000000:role/ecsTaskExecutionRole",
+  "arn:aws:iam::000000000000:role/applicationTaskRole"
+]
