@@ -1,5 +1,5 @@
 bucket         = "replace-with-globally-unique-state-bucket"
 key            = "devops-assignment/terraform.tfstate"
 region         = "us-east-1"
-dynamodb_table = "devops-assignment-terraform-locks"
+use_lockfile   = "true"
 encrypt        = true
